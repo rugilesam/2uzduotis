@@ -11,3 +11,11 @@ Atlikta analizė, skirta palyginti spartą naudojant struktūrą ir klasę. Anal
 |Testo laikas | 0,38915 s|0,35206 s | 3,62439 s|3,44468 s |
 
 Palyginimas: sparta panaši tarp struct ir class naudojimo, bet class šiek tiek spartesnė.
+
+Kompiuterio duomenys:
+
+CPU - Apple M1 chip 8-core CPU with 4 perform­ance cores and 4 efficiency cores
+
+RAM - 16 GB
+
+HDD - 256 GB SSD
