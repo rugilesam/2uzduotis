@@ -19,65 +19,52 @@
 
 using namespace std;
 
-class Studentai {
-public:
-    struct Duomenys
-    {
-        string vard, pav;
-        vector <int> nd;
-        int egz{};
-        float vid{};
-        float galutinis{};
-    };
-    
-    void veiksmai();
-    
-    static bool palyginimas(Studentai::Duomenys& a, Studentai::Duomenys& b, string rus_index);
-    
+class Studentas {
 private:
-
-    template <typename S>
-    void skaiciavimas(S &grupe, Studentai::Duomenys &temp) ;
-
-    template <class P>
-    void pal_pav(P &grupe, string rus_index) ;
+    string vard_;
+    string pav_;
+    double egz_;
+    vector<int> nd;
+    float galutinis_;
+    float vid_;
+public:
+    Studentas() : egz_(0) { }  // default konstruktorius
+    Studentas(std::istream& is);
     
-    template <class P>
-    void pal_pav_list(P &grupe, string rus_index) ;
-
-    template <class T>
-    void nuskaitymas(const string& failas, T& grupe) ;
-
-    template <class S>
-    void skaiciavimas_2(int &suma, int nd_sk, Studentai::Duomenys &temp, S &grupe) ;
-
-    template <class P>
-    void padalinimas(P& grupe, P& vargsiukai) ;
-
-//spausdinimo funkcija kietiakam ir vargsiukam
-    template <class P>
-    void padalinto_spausdinimas(const P& Duomenys, const string& failo_pav);
+  ~Studentas() {};
+    std::string getName() const { return vard_; }
+    std::string getSurname() const { return pav_; }
+    vector<int> getNd() const { return nd; }
+    int GautiEgzaminas() const { return egz_; }
+    float getGalutinis() const { return galutinis_; }
+    float getVid() const { return vid_; }
+    int GautiDydi() const { return nd.size(); }
+    double GP(int, double);
     
-    int kiek_sk(const string& failas);
-    void gen_failas(int stud_gen_sk, int stud_gen_nd);
+    void setStudentas(std::string, std::string);
+    void setEgzaminas(int);
+    void setGalutinis(float);
+    void setVid(float);
+    void setName(string);
+    void setSurname(string);
+    void SetNd(int);
+    void EmptyNd();
+    void SortNd();
+
 };
 
+bool palyginimas(const Studentas& a, const Studentas& b, string rus_index);
+void skaiciavimas(int& suma, int nd_sk, Studentas& temp, vector<Studentas>& grupe);
+void skaiciavimas_2(int &suma, int nd_sk, Studentas& temp, vector<Studentas>& grupe);
+void isvedimas(vector<Studentas> &grupe, string gen, string ats,string rus_index);
+void isvedimas_list(list<Studentas> &grupe, string gen, string ats,string rus_index);
 
-// Aibūdiname ContainerTypeTrait šabloną
-template <typename S>
-struct ContainerTypeTrait;
-
-// Specifikuojame atvejui vector<studentas>
-template <>
-struct ContainerTypeTrait<vector<Studentai::Duomenys>> {
-using type = vector<int>;
-};
-
-// Specifikuojame atvejui list<studentas>
-template <>
-struct ContainerTypeTrait<list<Studentai::Duomenys>> {
-    using type = list<int>;
-};
-
+int kiek_sk(const string& failas);
+void gen_failas(int stud_gen_sk, int stud_gen_nd);
+void nuskaitymas(const string& failas, vector<Studentas>& grupe);
+void pal_pav( vector<Studentas>& grupe, string rus_index);
+void pal_pav_list(vector<Studentas>& grupe, string rus_index);
+void padalinimas(vector<Studentas>& grupe, vector<Studentas>& vargsiukai);
+void padalinto_spausdinimas(const vector<Studentas>& Studentas, const string& failo_pav);
 
 #endif
